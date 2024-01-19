@@ -1,0 +1,218 @@
+:root {
+  --primary-color: #ffffff;
+  --secondary-color: #6b6fae;
+  --primary-background: #5746ea;
+  --secondary-background: #1e1f4d;
+  --primary-padding: 2rem;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  font-size: 1.6rem;
+  background-color: #0d1323;
+  font-family: sans-serif;
+  color: var(--primary-color);
+  flex-direction: column;
+}
+
+main {
+  width: 80%;
+  height: 60rem;
+  display: grid;
+  grid-template-areas:
+  "U W P S"
+  "U E SO SC";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2rem;
+
+  //User information, and time period selection styles
+  #user {
+    position: relative;
+
+    #user-information, #time-period {
+      height: 80%;
+      position: absolute;
+      width: 100%;
+      border-radius: 1rem;
+    }
+
+    #user-information {
+      display: flex;
+      padding: var(--primary-padding);
+      flex-direction: column;
+      gap: 3rem;
+      align-items: center;
+      justify-content: start;
+      z-index: 5;
+      background-color: var(--primary-background);
+
+      img {
+        height: 10rem;
+        aspect-ratio: 1;
+        border: 3px solid var(--primary-color);
+        border-radius: 50%;
+      }
+
+      p:first-of-type {
+        font-size: 2.2rem;
+        color: var(--secondary-color);
+      }
+
+      p:last-of-type {
+        font-size: max(2vw, 2.5rem);
+      }
+    }
+
+    #time-period {
+      display: flex;
+      align-items: end;
+      bottom: 0;
+      color: var(--secondary-color);
+      background-color: var(--secondary-background);
+      padding: var(--primary-padding);
+
+      p {
+        margin: .5rem 0;
+        cursor: pointer;
+      }
+
+      p.active {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    // Inside of container
+    .background, .information-container {
+      border-radius: 1rem;
+      height: 80%;
+      position: absolute;
+      width: 100%;
+    }
+
+    .background {
+      z-index: -5;
+    }
+
+    .background .icon {
+      position: absolute;
+      right: 2rem;
+      top: 0;
+    }
+
+    .information-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      bottom: 0;
+      background-color: var(--secondary-background);
+      padding: var(--primary-padding);
+
+      .top-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .title {
+          font-size: min(2.8rem, 5vw);
+        }
+      }
+
+      .bottom-container {
+        .current {
+          font-size: min(3rem, 6vw);
+        }
+        .previous {
+          font-size: min(2.2rem, 4vw);
+          color: var(--secondary-color)
+        }
+      }
+    }
+  }
+
+  //Set position for sections
+  #user {
+    grid-area: U;
+  }
+
+  #work {
+    grid-area: W;
+  }
+
+  #play {
+    grid-area: P;
+  }
+
+  #study {
+    grid-area: S;
+  }
+
+  #exercise {
+    grid-area: E;
+  }
+
+  #social {
+    grid-area: SO;
+  }
+
+  #self-care {
+    grid-area: SC;
+  }
+
+}
+
+
+@media screen and (max-width: 900px) {
+
+  main {
+    flex: 1;
+    grid-template-areas: "U" "W" "P" "S" "E" "SO" "SC";
+    grid-template-columns: 1fr;
+    grid-template-rows: 20rem repeat(6, 15rem);
+    padding: 2rem 0;
+    #user {
+      #user-information {
+        height: 70%;
+        flex-direction: row;
+        p {
+          display: initial;
+        }
+      }
+      #time-period {
+        div {
+          width: 100%;
+          display: flex;
+          justify-content: space-around;
+        }
+      }
+    }
+
+    .information-container {
+      .bottom-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+}
